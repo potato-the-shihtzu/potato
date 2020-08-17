@@ -45,12 +45,16 @@ h2{
 	font-weight: lighter;
 }
 
-p, table tr td:first-of-type{
+p{
 	font-size: 2rem;
 }
 
 li.box{
 	font-size: 1.5rem;
+}
+
+table tr td:first-of-type{
+	font-size: 1.25rem;
 }
 
 header{
