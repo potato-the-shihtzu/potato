@@ -1,0 +1,185 @@
+/* Color Palette #D8E2DC#FFE5D9#FFCAD4#F4ACB7#9D8189 */
+/* Alternate Colors #3D4D4B#aee7e8#59c0c2#00a79d#99b898#feceab#ff847c#e84a5f */
+/* ### ELEMENT STYLES ### */
+body{
+	margin: 0;
+	font-family: 'Merriweather', serif;
+	font-size: 100%;
+	width: 100%;
+	text-align: center;
+	line-height: 1.5;
+	background: #f5f5f5;
+	color: #40514E;
+}
+
+h1{
+	font-family: 'Sacramento', cursive;
+	color: #59c0c2;
+	font-size: 5.25rem;
+	margin: 0;
+}
+
+h2, h3, h4, h5, h6{
+	color: #579130;
+	font-family: 'Montserrat', sans-serif;
+}
+
+h2{
+	font-size: 2.25rem;
+	font-family: "Plavea - Shine";
+}
+
+header{
+	background: #FFE5D9;
+}
+
+section{
+	margin-top: 100px;
+}
+
+section p{
+	width: 70%;
+	margin: 25px auto;
+	line-height: 2;
+}
+
+hr{
+	border: dotted 6px #D8E2DC;
+	border-bottom: none;
+	width: 5%;
+	margin: 100px auto;
+}
+
+li{
+	list-style-type: none;
+}
+
+/* ### CLASS STYLES ### */
+
+.gif{
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	top: 15px;
+}
+
+.pro{
+	border-radius: 100%;
+}
+
+/* --- Skills Section --- */
+
+.skills table {
+	margin: 50px 25px;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+/* Styling of the stars */
+.skills tr td:last-of-type{
+	color: #D8E2DC;
+	letter-spacing: .2rem;
+	text-align: right;
+}
+/* Styling of the stars filled in */
+.skills tr td .star{
+	color: #F4ACB7;
+	-webkit-transition: letter-spacing .5s;
+	transition: letter-spacing .5s;
+}
+
+/* Hover over the row to see the background*/
+.skills tr:hover{
+	background: #eff1f0;
+}
+/* Transitions to larger letter spacing */
+.skills tr:hover td:last-of-type span{
+	letter-spacing: .4rem;
+	-webkit-transition: letter-spacing .5s;
+	transition: letter-spacing .5s;
+}
+
+.skills tr td{
+	width: 100%;
+}
+/* The skills <hr> is used as a top/bottom border */
+.skills hr{
+	border: solid 1px #40514E;
+	width: 100%;
+	margin: 50px auto;
+}
+
+/* --- Daily Life Section --- */
+
+/* Timeline background */
+.daily_life > div{
+	background: #99b898;
+	width: 100%;
+}
+/* Grid of the timeline */
+.daily_life ul{
+	display: grid;
+	grid-template-rows: 5fr 1fr 5fr;
+	grid-template-columns: auto;
+	overflow: scroll;
+	margin: 0;
+	padding: 25px;
+	row-gap: 25px;
+	column-gap: 25px;
+}
+
+/* Event box */
+
+.daily_life .box{
+	width: 350px;
+	text-align: left;
+}
+
+/* Placing the events top and bottom alternating */
+
+.daily_life .box:nth-of-type(odd){
+	grid-row-start: 1;
+}
+
+.daily_life .box:nth-of-type(even){
+	grid-row-start: 3;
+}
+
+/* Placement of all the events other than the first */
+
+.daily_life .box2{
+	grid-column-start: 2;
+}
+.daily_life .box3{
+	grid-column-start: 3;
+}
+.daily_life .box4{
+	grid-column-start: 4;
+}
+.daily_life .box5{
+	grid-column-start: 5;
+}
+.daily_life .box6{
+	grid-column-start: 6;
+}
+.daily_life .box7{
+	grid-column-start: 7;
+}
+
+
+/* Line in the middle */
+
+.daily_life hr{
+	grid-row-start: 2;
+	grid-column: 1 / 10;
+	width: 100%;
+	border: solid 1px #40514E;
+	height: 0;
+	margin: 0;
+	align-self: center;
+}
+
+.daily_life h3{
+	color: #3D4D4B;
+}
+
