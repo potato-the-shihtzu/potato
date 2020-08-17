@@ -1,9 +1,24 @@
+@font-face{
+	font-family: "Plavea Solid";
+	src: url("../fonts/plavea/PlaveaSolid-Yzyjj.ttf") format("truetype");
+}
+
+@font-face{
+	font-family: "Plavea Shine";
+	src: url("../fonts/plavea/PlaveaShine-8M4XD.otf") format("opentype");
+}
+
+@font-face{
+	font-family: "basic-font";
+	src: url("../fonts/BasicFontRegular-GOOlD.ttf") format("truetype");
+}
+
 /* Color Palette #D8E2DC#FFE5D9#FFCAD4#F4ACB7#9D8189 */
 /* Alternate Colors #3D4D4B#aee7e8#59c0c2#00a79d#99b898#feceab#ff847c#e84a5f */
 /* ### ELEMENT STYLES ### */
 body{
 	margin: 0;
-	font-family: 'Merriweather', serif;
+	font-family: "basic-font", serif;
 	font-size: 100%;
 	width: 100%;
 	text-align: center;
@@ -14,19 +29,28 @@ body{
 
 h1{
 	font-family: 'Sacramento', cursive;
-	color: #59c0c2;
+	color: #91A6FF;
 	font-size: 5.25rem;
 	margin: 0;
 }
 
 h2, h3, h4, h5, h6{
-	color: #579130;
+	color: #99b898;
 	font-family: 'Montserrat', sans-serif;
 }
 
 h2{
-	font-size: 2.25rem;
-	font-family: "Plavea - Shine";
+	font-size: 3.5rem;
+	font-family: "Plavea Shine","Plavea Solid", sans-serif;
+	font-weight: lighter;
+}
+
+p, table tr td:first-of-type{
+	font-size: 2rem;
+}
+
+li.box{
+	font-size: 1.5rem;
 }
 
 header{
@@ -181,5 +205,6 @@ li{
 
 .daily_life h3{
 	color: #3D4D4B;
+	font-family: "Plavea Shine","Plavea Solid", sans-serif;
 }
 
