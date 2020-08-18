@@ -137,6 +137,20 @@ li{
 	margin: 50px auto;
 }
 
+@media screen and (min-width: 600px){
+	.skills table{
+		width: calc(400px - 2.5vw);
+		margin: auto;
+	}
+}
+
+@media screen and (min-width: 1000px){
+	.skills table{
+		/* display: flex;
+		flex-flow: row; */
+	}
+}
+
 /* --- Daily Life Section --- */
 
 /* Timeline background */
