@@ -82,6 +82,26 @@ li{
 	list-style-type: none;
 }
 
+footer{
+	background: #FFE5D9;
+	font-family: 'Montserrat', sans-serif;
+	height: 100px;
+	padding: 10px;
+}
+
+footer p{
+	margin: 40px 0 10px;
+	font-size: 0.9rem;
+}
+
+footer a, footer a:visited{
+	text-decoration: none;
+	color: #40514E;
+}
+footer a:hover{
+	color: #40514ea9;
+}
+
 /* ### CLASS STYLES ### */
 
 .gif{
@@ -144,15 +164,11 @@ li{
 	}
 }
 
-@media screen and (min-width: 1000px){
-	.skills table{
-		/* display: flex;
-		flex-flow: row; */
-	}
-}
-
 /* --- Daily Life Section --- */
 
+.daily_life{
+	margin: 0 2.5vw 100px;
+}
 /* Timeline background */
 .daily_life > div{
 	background: #99b898;
@@ -229,3 +245,29 @@ li{
 	font-weight: lighter;
 }
 
+/* --- Gallery Section --- */
+
+section.gallery{
+	display: flex;
+	flex-flow: column wrap;
+	margin: 0 2.5vw 100px;
+	gap: 40px;
+}
+
+@media screen and (min-width: 600px){
+	section.gallery{
+		flex-flow: row wrap;
+		gap: 5px;
+	}
+}
+
+.gallery .container{
+	background: #99b898;
+	width: 400px; 
+	padding: 2.5px;
+}
+
+.gallery img{
+	max-width: 100%;
+	vertical-align: middle;
+}
