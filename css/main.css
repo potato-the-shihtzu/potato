@@ -85,12 +85,10 @@ li{
 footer{
 	background: #FFE5D9;
 	font-family: 'Montserrat', sans-serif;
-	height: 100px;
-	padding: 10px;
+	padding: 10px 0 10px;
 }
 
 footer p{
-	margin: 40px 0 10px;
 	font-size: 0.9rem;
 }
 
@@ -100,6 +98,19 @@ footer a, footer a:visited{
 }
 footer a:hover{
 	color: #40514ea9;
+}
+
+footer div{
+	display: flex;
+	justify-content: space-around;
+	flex-flow: column wrap;
+	margin: 20px auto 10px;
+	padding: 0;
+
+}
+footer div p{
+	margin: 15px;
+	
 }
 
 /* ### CLASS STYLES ### */
@@ -171,7 +182,10 @@ footer a:hover{
 }
 /* Timeline background */
 .daily_life > div{
-	background: #99b898;
+	background: url(../img/icons/png/001-moon.png), url(../img/icons/png/002-sunny.png), #99b898;
+	background: url(../img/icons/svg/001-moon.svg) right/30% no-repeat, url(../img/icons/svg/002-sunny.svg) left/30% no-repeat, #99b898;
+	background-blend-mode: screen;
+
 	width: 100%;
 }
 /* Grid of the timeline */
@@ -179,7 +193,7 @@ footer a:hover{
 	display: grid;
 	grid-template-rows: 5fr 1fr 5fr;
 	grid-template-columns: auto;
-	overflow-x: scroll;
+	overflow: auto;
 	margin: 0;
 	padding: 25px;
 	row-gap: 25px;
