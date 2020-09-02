@@ -88,6 +88,14 @@ footer{
 	padding: 10px 0 10px;
 }
 
+footer img{
+	width: 18px;
+	margin-right: 5px;
+	vertical-align: middle;
+	position: relative;
+	bottom: 2px;
+}
+
 footer a, footer a:visited{
 	text-decoration: none;
 	color: #40514E;
@@ -119,6 +127,7 @@ footer div p{
 
 .pro{
 	border-radius: 100%;
+	width: 300px;
 }
 
 /* --- Skills Section --- */
