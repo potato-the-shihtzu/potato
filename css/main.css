@@ -182,8 +182,10 @@ footer div p{
 }
 /* Timeline background */
 .daily_life > div{
-	background: url(../img/icons/png/001-moon.png), url(../img/icons/png/002-sunny.png), #99b898;
-	background: url(../img/icons/svg/001-moon.svg) right/30% no-repeat, url(../img/icons/svg/002-sunny.svg) left/30% no-repeat, #99b898;
+	/* background: url(../img/icons/png/001-moon.png), url(../img/icons/png/002-sunny.png), #99b898; */
+	/* background: url(../img/icons/svg/001-moon.svg) right/30% no-repeat, url(../img/icons/svg/002-sunny.svg) left/30% no-repeat, #99b898; */
+	/* background: url(../img/icons/png/night-day.jpeg) scroll left/cover no-repeat; */
+	background-color: #99b898;
 	background-blend-mode: screen;
 
 	width: 100%;
