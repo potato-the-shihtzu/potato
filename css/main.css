@@ -130,9 +130,19 @@ footer div p{
 	width: 300px;
 }
 
+/* --- Navigation --- */
+
+nav svg:hover path:nth-of-type(2){
+	fill: #FFE5D9;
+}
+
+/* nav svg:hover path:nth-of-type(5){
+	fill: #1f212b; */
+}
+
 /* --- Skills Section --- */
 
-.skills table {
+.skills table{
 	margin: 50px 25px;
 	text-align: left;
 	border-collapse: collapse;
