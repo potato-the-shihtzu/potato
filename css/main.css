@@ -13,6 +13,11 @@
 	src: url("../fonts/BasicFontRegular-GOOlD.ttf") format("truetype");
 }
 
+@font-face {
+	font-family: "Adeline";
+	src: url("../fonts/Adeline.ttf") format("truetype");
+}
+
 /* Color Palette #D8E2DC#FFE5D9#FFCAD4#F4ACB7#9D8189 */
 /* Alternate Colors #3D4D4B#aee7e8#59c0c2#00a79d#99b898#feceab#ff847c#e84a5f */
 /* ### ELEMENT STYLES ### */
@@ -28,7 +33,7 @@ body {
 }
 
 h1 {
-	font-family: "Sacramento", cursive;
+	font-family: "Adeline", cursive;
 	color: #91a6ff;
 	font-size: 5.25rem;
 	margin: 0;
@@ -63,10 +68,20 @@ table tr td:first-of-type {
 
 header {
 	background: #ffe5d9;
+	margin: 0;
+	padding: 3rem 0 0;
+}
+
+header h2{
+	margin: 2rem 1rem 0;
 }
 
 section {
 	margin-top: 100px;
+}
+
+section:first-of-type{
+	margin-top: 0;
 }
 
 section p {
@@ -131,6 +146,12 @@ footer div p {
 	width: 300px;
 }
 
+.header_img{
+	position: relative;
+	top: 29px;
+	margin-bottom: 6px;
+}
+
 /* --- Navigation --- */
 
 nav {
@@ -142,12 +163,19 @@ nav {
 nav ul {
 	display: flex;
 	visibility: hidden;
+	height: 0px;
 	flex-flow: column;
-	margin: 0;
+	margin: 0 0 35px;
 	padding: 0;
 	width: 100%;
-	-webkit-transition: all 1s ease-in-out;
-	transition: all 1s ease-in-out;
+	-webkit-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	overflow: hidden;
+}
+
+.nav_trans{
+	height: 192px;
+	visibility: visible;
 }
 
 nav ul li {
@@ -160,7 +188,6 @@ nav ul li a {
 	color: #99b898;
 	text-decoration: none;
 }
-
 /* Hamburger Menu */
 
 nav div {
@@ -178,19 +205,27 @@ nav svg:hover .bg_circle {
 	fill: #ffe5d9;
 }
 
-@media screen and (min-width: 600px) {
+/* Media Queries for NAV */
+
+@media screen and (min-width: 768px) {
 	nav {
 		flex-flow: row-reverse;
+		height: 7.5rem;
 	}
 
 	nav ul {
 		flex-flow: row;
 		justify-content: space-evenly;
-		padding: 0 0 0 1rem;
+		height: 7.5rem;
+		width: 0;
+	}
+
+	.nav_trans {
+		width: 100%;
+		height: inherit;
 	}
 
 	nav ul li {
-		padding: 1rem;
 		display: flex;
 		align-self: center;
 	}
@@ -201,7 +236,11 @@ nav svg:hover .bg_circle {
 
 	nav svg {
 		width: 7.5rem;
-		height: 7.5rem;
+		height: 7.5rem;	
+	}
+
+	nav div{
+		align-self: flex-start;
 	}
 }
 /* --- Skills Section --- */
@@ -267,7 +306,6 @@ nav svg:hover .bg_circle {
 .daily_life > div {
 	/* background: url(../img/icons/png/001-moon.png), url(../img/icons/png/002-sunny.png), #99b898; */
 	/* background: url(../img/icons/svg/001-moon.svg) right/30% no-repeat, url(../img/icons/svg/002-sunny.svg) left/30% no-repeat, #99b898; */
-	/* background: url(../img/icons/png/night-day.jpeg) scroll left/cover no-repeat; */
 	background-color: #99b898;
 	background-blend-mode: screen;
 	width: 100%;
@@ -283,6 +321,7 @@ nav svg:hover .bg_circle {
 	row-gap: 25px;
 	column-gap: 25px;
 	height: 80vh;
+	list-style-type: none;
 }
 
 /* Event box */

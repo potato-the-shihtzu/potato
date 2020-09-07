@@ -1,0 +1,21 @@
+header{
+    height: 80vh;
+}
+
+a button{
+    margin: 3rem;
+    width: 400px;
+    height: 100px;
+    border-radius: 20px;
+    border: 1px outset black;
+    cursor: pointer;
+    background-color: #e84a5f;
+    font-size: 3rem;
+    font-family: 'basic-font';
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
