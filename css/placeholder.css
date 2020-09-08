@@ -1,21 +1,32 @@
+
 header{
-    height: 80vh;
+    display: flex;
+    flex-flow: column;
+    gap: 4rem;
+    height: 100vh;
+    padding: 1rem 1rem 3rem;
+}
+
+header h2{
+    font-size: 3rem;
+    margin: 0;
+}
+
+a.button{
+    display: block;
 }
 
 a button{
-    margin: 3rem;
-    width: 400px;
-    height: 100px;
+    padding: 2rem 1rem;
     border-radius: 20px;
     border: 1px outset black;
     cursor: pointer;
     background-color: #e84a5f;
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: 'basic-font';
 }
 
 footer{
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    display: none;
 }
