@@ -72,7 +72,7 @@ header {
 	padding: 3rem 0 0;
 }
 
-header h2{
+header h2 {
 	margin: 2rem 1rem 0;
 }
 
@@ -80,7 +80,7 @@ section {
 	margin-top: 100px;
 }
 
-section:first-of-type{
+section:first-of-type {
 	margin-top: 0;
 }
 
@@ -146,7 +146,7 @@ footer div p {
 	width: 300px;
 }
 
-.header_img{
+.header_img {
 	position: relative;
 	top: 29px;
 	margin-bottom: 6px;
@@ -173,7 +173,7 @@ nav ul {
 	overflow: hidden;
 }
 
-.nav_trans{
+.nav_trans {
 	height: 192px;
 	visibility: visible;
 }
@@ -188,20 +188,25 @@ nav ul li a {
 	color: #99b898;
 	text-decoration: none;
 }
+
+/* Placeholder Link Styling */
+.placeholder_link {
+	text-decoration: line-through;
+}
 /* Hamburger Menu */
 
 nav div {
 	align-self: flex-end;
 }
-nav svg {
+.nav_button svg {
 	width: 4rem;
 	height: 4rem;
 }
-nav svg:hover {
+.nav_button svg:hover {
 	cursor: pointer;
 }
 
-nav svg:hover .bg_circle {
+.nav_button svg:hover .bg_circle {
 	fill: #ffe5d9;
 }
 
@@ -234,12 +239,12 @@ nav svg:hover .bg_circle {
 		font-size: 3rem;
 	}
 
-	nav svg {
+	.nav_button svg {
 		width: 7.5rem;
-		height: 7.5rem;	
+		height: 7.5rem;
 	}
 
-	nav div{
+	.nav_button {
 		align-self: flex-start;
 	}
 }
@@ -407,3 +412,5 @@ section.gallery {
 	max-width: 100%;
 	vertical-align: middle;
 }
+
+/* Other Page Styling */

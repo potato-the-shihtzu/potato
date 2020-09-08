@@ -1,0 +1,114 @@
+/* Dog Log specific CSS */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+}
+
+body {
+	background: linear-gradient(120deg, #e6dcdc, #aee7e8);
+}
+
+/* Header/Nav */
+
+header {
+	padding: 0 0 0 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+h1 {
+	font-size: 5rem;
+}
+
+nav {
+	padding: 0;
+}
+
+nav ul {
+	background: #ffe5d9;
+}
+
+.nav_button svg {
+	width: 6rem;
+	height: 6rem;
+}
+
+/* Dog Log Enter Info Styling */
+form {
+	width: 80%;
+	margin: 3rem auto;
+	display: flex;
+	flex-flow: column;
+}
+
+form * {
+	color: #40514e;
+}
+
+form input,
+form select,
+form button {
+	font-size: 1.5rem;
+	border: none;
+	border-radius: 5px;
+	margin: 0.5rem;
+}
+
+form button {
+	color: #40514e;
+	background: white;
+	transition: all 0.3s ease;
+}
+
+form button:hover {
+	background: #aee7e8;
+	color: white;
+	cursor: pointer;
+}
+
+/* Dog Log List Styling */
+
+.log_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.log_list {
+	min-width: 75%;
+	list-style: none;
+}
+
+.log_entry {
+	margin: 0.5rem;
+	background: white;
+	font-size: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.log_item {
+	display: block;
+	flex: 1;
+	border-right: 1px solid #40514e;
+	text-transform: capitalize;
+}
+
+.log_entry .log_item:nth-last-child(2) {
+	border-right: none;
+}
+
+.trash_btn {
+	background: #59c0c2;
+	color: white;
+	border: none;
+	padding: 1rem;
+	cursor: pointer;
+	font-size: 1rem;
+	align-self: stretch;
+}
