@@ -7,7 +7,8 @@
 }
 
 body {
-	background: linear-gradient(120deg, #e6dcdc, #aee7e8);
+	/* background: linear-gradient(120deg, #e6dcdc, #aee7e8); */
+	background: linear-gradient(120deg, #ffe5d9, #aee7e8);
 }
 
 /* Header/Nav */
@@ -64,7 +65,7 @@ form button {
 }
 
 form button:hover {
-	background: #aee7e8;
+	background: #59c0c2;
 	color: white;
 	cursor: pointer;
 }
@@ -75,12 +76,15 @@ form button:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 150px;
 }
 
 .log_list {
 	min-width: 75%;
 	list-style: none;
 }
+
+/* Individual list entries and items */
 
 .log_entry {
 	margin: 0.5rem;
@@ -90,6 +94,7 @@ form button:hover {
 	justify-content: space-between;
 	justify-content: flex-end;
 	align-items: center;
+	transition: all 1s ease;
 }
 
 .log_item {
@@ -103,6 +108,8 @@ form button:hover {
 	border-right: none;
 }
 
+/* Trash button */
+
 .trash_btn {
 	background: #59c0c2;
 	color: white;
@@ -111,4 +118,19 @@ form button:hover {
 	cursor: pointer;
 	font-size: 1rem;
 	align-self: stretch;
+	transition: 0.3s all ease;
+}
+
+.trash_btn:hover{
+	background: white;
+	color: #59c0c2;
+}
+
+.fa-trash, .fa-check{
+	pointer-events: none;
+}
+
+.fall{
+	transform: translateY(8rem) rotateZ(20deg);
+	opacity: 0;
 }

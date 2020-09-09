@@ -34,7 +34,7 @@ function addLogEntry(event) {
 	// Create each element of logItem
 	for (var i = 0; i < logEntry.length; i++) {
 		if (logEntry[i].value !== "") {
-			const newLogItem = document.createElement("span");
+			const newLogItem = document.createElement("li");
 			console.log((newLogItem.innerHTML = logEntry[i].value.replace("_", " ")));
 			console.log(newLogItem.classList.add("log_item"));
 			console.log(logDiv.appendChild(newLogItem));
@@ -56,8 +56,14 @@ function addLogEntry(event) {
 }
 
 function deleteCheck(event){
-	const item = event.target;
+	const logItem = event.target;
 	// Delete logEntry
-	if (item.classList[0] === "trash_btn")
+	if (logItem.classList[0] === "trash_btn"){
+		const parentLogItem = logItem.parentElement;
+		// Animation
+		parentLogItem.classList.add("fall");
+		window.setTimeout(function(){parentLogItem.remove()}, 1000);
+		// parentLogItem.addEventListener('transitionend', function(){parentLogItem.remove()});
+	}
 
 }
