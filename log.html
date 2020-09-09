@@ -116,32 +116,32 @@
 		<main>
 			<form>
 				<input type="date" min="2015-01-01" class="log_date" required />
-				<input
-					type="time"
-					name=""
-					id=""
-					placeholder=""
-					class="log_time"
-					required
-				/>
+				<input type="time" name="" id="" class="log_time" required />
 				<select
 					name="dog_activity"
 					id="dog_activity"
 					class="log_activity"
 					required
 				>
-					<option value="pee">Pee</option>
-					<option value="poo">Poo</option>
-					<option value="accident_pee">Accident Pee</option>
-					<option value="accident_poo">Accident Poo</option>
+					<option value="💦_pee">💦 Pee</option>
+					<option value="💩_poo">💩 Poo</option>
+					<option value="😡💦_accident_pee">😡💦 Accident Pee</option>
+					<option value="😡💩_accident_poo">😡💩 Accident Poo</option>
 					<option value="🐕_walk">🐕 Walk</option>
-					<option value="food">Food</option>
+					<option value="🍲_food">🍲 Food</option>
 					<option value="🦴_training">🦴 Training</option>
 					<option value="❔_other">❔ Other</option>
 				</select>
 				<input type="text" class="log_comment" placeholder="Optional Comment" />
 				<button class="log_button" type="submit">&#43;</button>
 			</form>
+			<div class="filter">
+				<select name="log_entries" class="filter_log">
+					<option value="none" selected disabled hidden>Filter</option>
+					<option value="all">All</option>
+					<option value="with_comment">Includes Comment</option>
+				</select>
+			</div>
 			<div class="log_container">
 				<ul class="log_list"></ul>
 			</div>

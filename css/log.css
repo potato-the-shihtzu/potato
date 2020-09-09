@@ -7,8 +7,12 @@
 }
 
 body {
-	/* background: linear-gradient(120deg, #e6dcdc, #aee7e8); */
+	background: -webkit-linear-gradient(120deg, #ffe5d9, #aee7e8);
 	background: linear-gradient(120deg, #ffe5d9, #aee7e8);
+}
+
+main {
+	padding-bottom: 59px;
 }
 
 /* Header/Nav */
@@ -97,14 +101,14 @@ form button:hover {
 	transition: all 1s ease;
 }
 
-.log_item {
+.log_entry li {
 	display: block;
 	flex: 1;
 	border-right: 1px solid #40514e;
 	text-transform: capitalize;
 }
 
-.log_entry .log_item:nth-last-child(2) {
+.log_entry li:nth-last-child(2) {
 	border-right: none;
 }
 
@@ -121,16 +125,57 @@ form button:hover {
 	transition: 0.3s all ease;
 }
 
-.trash_btn:hover{
+.trash_btn:hover {
 	background: white;
 	color: #59c0c2;
 }
 
-.fa-trash, .fa-check{
+.fa-trash,
+.fa-check {
 	pointer-events: none;
 }
 
-.fall{
+.fall {
 	transform: translateY(8rem) rotateZ(20deg);
 	opacity: 0;
+}
+
+/* Select Tag */
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+
+.filter {
+	margin: 1rem auto;
+	position: relative;
+	overflow: hidden;
+	width: 10rem;
+}
+
+.filter select {
+	color: #40514e;
+	width: 100%;
+	padding: 1rem;
+}
+
+.filter::after {
+	content: "\25BC";
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 1rem;
+	pointer-events: none;
+	color: white;
+	background: #59c0c2;
+	transition: all 0.3s ease;
+}
+
+.filter:hover::after {
+	background: white;
+	color: #59c0c2;
 }
