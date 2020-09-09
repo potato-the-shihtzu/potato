@@ -62,6 +62,7 @@ form button {
 	margin: 0.5rem auto;
 	background: white;
 	width: 90%;
+	min-width: 90%;
 }
 
 form button {
