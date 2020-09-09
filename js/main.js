@@ -15,7 +15,7 @@ const logTime = document.querySelector("form .log_time");
 const logActivity = document.querySelector("form .log_activity");
 const logComment = document.querySelector("form .log_comment");
 
-const logParamaters = [logDate, logTime, logActivity, logComment];
+const logArray = [logDate, logTime, logActivity, logComment];
 
 const logButton = document.querySelector(".log_button");
 const logContainer = document.querySelector(".log_container");
@@ -23,30 +23,55 @@ const logList = document.querySelector(".log_list");
 
 const filterOption = document.querySelector(".filter_log");
 
+// setting Default Time and Date
+let currentTimeDate = new Date();
+let defMonth;
+let defDay;
+let defYear;
+let defHour;
+let defMinute;
+// default month
+if (currentTimeDate.getMonth() < 9) {
+	defMonth = "0" + (currentTimeDate.getMonth() + 1).toString();
+} else {
+	defMonth = (currentTimeDate.getMonth() + 1).toString();
+}
+// default day
+if (currentTimeDate.getDate() < 10) {
+	defDay = "0" + currentTimeDate.getDate().toString();
+} else {
+	defDay = currentTimeDate.getDate().toString();
+}
+// default year
+defYear = currentTimeDate.getFullYear().toString();
+
+// default hour
+if (currentTimeDate.getHours() < 10) {
+	defHour = "0" + currentTimeDate.getHours().toString();
+} else {
+	defHour = currentTimeDate.getHours().toString();
+}
+// default minutes
+if (currentTimeDate.getMinutes() < 10) {
+	defMinute = "0" + currentTimeDate.getMinutes().toString();
+} else {
+	defMinute = currentTimeDate.getMinutes().toString();
+}
+
 // Event Listeners
-window.addEventListener("load", defaultDateTime);
-logButton.addEventListener(
-	"click",
-	addLogEntry(e, formattedDate, formattedTime)
-);
+
+window.addEventListener("load", function defaultDateTime() {
+	logDate.value = defYear + "-" + defMonth + "-" + defDay;
+
+	logTime.value = defHour + ":" + defMinute;
+});
+logButton.addEventListener("click", addLogEntry);
 logList.addEventListener("click", deleteCheck);
 filterOption.addEventListener("click", filterLog);
 
 // Functions
 
-function defaultDateTime() {
-	// setting Default Time and Date
-	let currentTimeDate = newDate();
-
-	if (currentTimeDate.getMonth() < 9) {
-		let month = 0(currentTimeDate.getMonth() + 1);
-	}
-	// setting formatted Time and Date
-	let formattedDate = "";
-	return formattedDate, formattedTime;
-}
-
-function addLogEntry(event, formattedDate, formattedTime) {
+function addLogEntry(event) {
 	// Prevent form from submitting
 	event.preventDefault();
 	// Create logEntry div
@@ -54,28 +79,50 @@ function addLogEntry(event, formattedDate, formattedTime) {
 	logDiv.classList.add("log_entry");
 
 	// Create each element of logItem
-
-	for (let i = 0; i < logParamaters.length; i++) {
+	for (let i = 0; i < logArray.length; i++) {
 		const newLogItem = document.createElement("li");
-		if (logParamaters[i].value !== "") {
+		if (logArray[i].value !== "") {
 			// For date
-			if (logParamaters[i] === logDate) {
+			if (logArray[i] === logDate) {
+				let valYear = logDate.value.slice(2, 4);
+				let valMonth = parseInt(logDate.value.slice(5, 7)).toString();
+				let valDay = parseInt(logDate.value.slice(8, 10)).toString();
+				let formattedDate = valMonth + "/" + valDay + "/" + valYear;
 				newLogItem.innerHTML = formattedDate;
+				console.log(formattedDate);
 			}
 			// for time
-			else if (logParamaters[i] === logTime) {
+			else if (logArray[i] === logTime) {
+				let ampm;
+				let valHour = logTime.value.slice(0, 2);
+				let valMinute = logTime.value.slice(3, 5);
+				if (valHour === "00") {
+					valHour = "12";
+					ampm = "AM";
+				} else if (valHour === "12") {
+					valHour = "12";
+					ampm = "PM";
+				} else if (parseInt(valHour, 10) > 12) {
+					valHour = (parseInt(valHour, 10) - 12).toString();
+					ampm = "PM";
+				} else {
+					valHour = valHour.slice(1);
+					ampm = "AM";
+				}
+				let formattedTime = valHour + ":" + valMinute + " " + ampm;
 				newLogItem.innerHTML = formattedTime;
+				console.log(formattedTime);
 			}
 			// for activity
-			else if (logParamaters[i] === logActivity) {
+			else if (logArray[i] === logActivity) {
 				newLogItem.innerHTML = logActivity.value.replace(/_/g, " ");
 			}
 			// for optional comment
-			else if (logParamaters[i] === logComment) {
+			else if (logArray[i] === logComment) {
 				newLogItem.innerHTML = logComment.value;
 			}
-			newLogItem.classList.add(logParamaters[i].className);
-			logDiv.appendChild(newLogIem);
+			newLogItem.classList.add(logArray[i].className);
+			logDiv.appendChild(newLogItem);
 		}
 	}
 
@@ -85,11 +132,11 @@ function addLogEntry(event, formattedDate, formattedTime) {
 	trashButton.classList.add("trash_btn");
 	logDiv.appendChild(trashButton);
 	// Append to List
-	logList.appendChild(logDiv);
+	logList.insertBefore(logDiv, logList.firstChild);
 
 	// Clear log input value
-	// for (let i = 0; i < logParamaters.length; i++) {
-	// 	logParamaters[i].value = "";
+	// for (let i = 0; i < logArray.length; i++) {
+	// 	logArray[i].value = "";
 	// }
 }
 
@@ -97,12 +144,15 @@ function deleteCheck(event) {
 	const logItem = event.target;
 	// Delete logEntry
 	if (logItem.classList[0] === "trash_btn") {
-		const parentLogItem = logItem.parentElement;
-		// Animation
-		parentLogItem.classList.add("fall");
-		window.setTimeout(function () {
-			parentLogItem.remove();
-		}, 1000);
+		var confirmation = confirm("Are you sure you want to delete?");
+		if (confirmation) {
+			const parentLogItem = logItem.parentElement;
+			// Animation
+			parentLogItem.classList.add("fall");
+			window.setTimeout(function () {
+				parentLogItem.remove();
+			}, 1000);
+		}
 	}
 }
 
@@ -113,9 +163,6 @@ function filterLog(e) {
 	logEntries.forEach(function (logEntry) {
 		// child elements of individual logEntry
 		const logListItems = logEntry.childNodes;
-		console.log(logEntry);
-		console.log(logListItems);
-		console.log(e.target.value);
 		// show list items based on filter option
 		switch (e.target.value) {
 			case "all":
@@ -123,7 +170,6 @@ function filterLog(e) {
 				break;
 			case "with_comment":
 				for (const logLi of logListItems) {
-					console.log(logLi);
 					if (logLi.classList.contains("log_comment")) {
 						logEntry.style.display = "flex";
 						break;
