@@ -15,6 +15,31 @@ main {
 	padding-bottom: 59px;
 }
 
+/* GRID layout for dog log */
+@media screen and (min-width: 1024px) {
+	main {
+		display: grid;
+		grid-template-rows: auto 1fr;
+		grid-template-columns: 600px 3fr;
+	}
+
+	.log_container {
+		grid-column-start: 2;
+	}
+
+	.filter {
+		grid-column-start: 2;
+	}
+
+	form {
+		grid-row-start: span 2;
+	}
+
+	footer {
+		margin-top: 4rem;
+	}
+}
+
 /* Header/Nav */
 
 header {
@@ -101,15 +126,17 @@ form button:hover {
 	display: flex;
 	justify-content: space-between;
 	justify-content: flex-end;
-	align-items: center;
+	align-items: stretch;
 	transition: all 1s ease;
 }
 
 .log_entry li {
-	display: block;
+	display: flex;
 	flex: 1;
 	border-right: 1px solid #40514e;
 	text-transform: capitalize;
+	padding: 0 1rem;
+	align-items: center;
 }
 
 .log_entry li:nth-last-child(2) {
@@ -160,6 +187,7 @@ select {
 	position: relative;
 	overflow: hidden;
 	width: 10rem;
+	font-size: 1rem;
 }
 
 .filter select {
@@ -173,7 +201,7 @@ select {
 	position: absolute;
 	top: 0;
 	right: 0;
-	padding: 1rem;
+	padding: 0.75rem;
 	pointer-events: none;
 	color: white;
 	background: #59c0c2;
