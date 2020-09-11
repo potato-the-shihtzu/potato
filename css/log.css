@@ -60,6 +60,7 @@ form button {
 	border: none;
 	border-radius: 5px;
 	margin: 0.5rem auto;
+	padding: 5px;
 	background: white;
 	width: 90%;
 	min-width: 90%;
