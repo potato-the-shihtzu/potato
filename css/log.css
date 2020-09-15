@@ -13,27 +13,31 @@ body {
 
 main {
 	padding-bottom: 59px;
-	display: flex;
-	flex-flow: column;
-	width: 80%;
-	margin: auto;
 }
 
-@media screen and (min-width: 600px){
-	main{
-		display: block;
+/* GRID layout for dog log */
+@media screen and (min-width: 1024px) {
+	main {
+		display: grid;
+		grid-template-rows: auto 1fr;
+		grid-template-columns: 600px 3fr;
 	}
-}
 
-/* Select Tag */
-select {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	outline: none;
-	border: none;
-	cursor: pointer;
-	background: white;
+	.log_container {
+		grid-column-start: 2;
+	}
+
+	.filter {
+		grid-column-start: 2;
+	}
+
+	form {
+		grid-row-start: span 2;
+	}
+
+	footer {
+		margin-top: 4rem;
+	}
 }
 
 /* Header/Nav */
@@ -64,8 +68,8 @@ nav ul {
 
 /* Dog Log Enter Info Styling */
 form {
-	width: 100%;
-	align-items: center;
+	width: 80%;
+	margin: 3rem auto;
 	display: flex;
 	flex-flow: column;
 }
@@ -81,70 +85,22 @@ form button {
 	border: none;
 	border-radius: 5px;
 	margin: 0.5rem auto;
+	padding: 5px;
 	background: white;
-	width: 100%;
-	cursor: auto;
-}
-
-input.log_comment::placeholder { 
-	color: #40514e2c;
-}
-
-input.log_comment::-webkit-input-placeholder, 
-input.log_comment::-moz-placeholder, 
-input.log_comment:-moz-placeholder ,
-input.log_comment:-ms-input-placeholder {
-	color: #40514e2c;
-}
-
-/* Filter and submit button */
-
-form div .bottom_form{
-	display: flex;	
-	flex-flow: row nowrap;
-	justify-content: space-between;
-	margin: 0;
+	width: 90%;
+	min-width: 90%;
 }
 
 form button {
 	color: #40514e;
 	background: white;
 	transition: all 0.3s ease;
-	/* padding: 0.5rem; */
 }
 
 form button:hover {
 	background: #59c0c2;
 	color: white;
 	cursor: pointer;
-}
-
-.filter {
-	position: relative;
-	overflow: hidden;
-}
-
-.filter select {
-	color: #40514e;
-	/* width: 100%; */
-	/* padding: 1rem; */
-}
-
-.filter::after {
-	content: "\25BC";
-	position: absolute;
-	top: 0;
-	right: 0;
-	/* padding: 1rem; */
-	pointer-events: none;
-	color: white;
-	background: #59c0c2;
-	transition: all 0.3s ease;
-}
-
-.filter:hover::after {
-	background: white;
-	color: #59c0c2;
 }
 
 /* Dog Log List Styling */
@@ -170,15 +126,17 @@ form button:hover {
 	display: flex;
 	justify-content: space-between;
 	justify-content: flex-end;
-	align-items: center;
+	align-items: stretch;
 	transition: all 1s ease;
 }
 
 .log_entry li {
-	display: block;
+	display: flex;
 	flex: 1;
 	border-right: 1px solid #40514e;
 	text-transform: capitalize;
+	padding: 0 1rem;
+	align-items: center;
 }
 
 .log_entry li:nth-last-child(2) {
@@ -213,6 +171,44 @@ form button:hover {
 	opacity: 0;
 }
 
+/* Select Tag */
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	background: white;
+}
 
+.filter {
+	margin: 1rem auto;
+	position: relative;
+	overflow: hidden;
+	width: 10rem;
+	font-size: 1rem;
+}
 
+.filter select {
+	color: #40514e;
+	width: 100%;
+	padding: 1rem;
+}
 
+.filter::after {
+	content: "\25BC";
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0.75rem;
+	pointer-events: none;
+	color: white;
+	background: #59c0c2;
+	transition: all 0.3s ease;
+}
+
+.filter:hover::after {
+	background: white;
+	color: #59c0c2;
+}
