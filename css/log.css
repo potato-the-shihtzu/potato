@@ -13,6 +13,27 @@ body {
 
 main {
 	padding-bottom: 59px;
+	display: flex;
+	flex-flow: column;
+	width: 80%;
+	margin: auto;
+}
+
+@media screen and (min-width: 600px){
+	main{
+		display: block;
+	}
+}
+
+/* Select Tag */
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	background: white;
 }
 
 /* Header/Nav */
@@ -43,8 +64,8 @@ nav ul {
 
 /* Dog Log Enter Info Styling */
 form {
-	width: 80%;
-	margin: 3rem auto;
+	width: 100%;
+	align-items: center;
 	display: flex;
 	flex-flow: column;
 }
@@ -61,20 +82,69 @@ form button {
 	border-radius: 5px;
 	margin: 0.5rem auto;
 	background: white;
-	width: 90%;
-	min-width: 90%;
+	width: 100%;
+	cursor: auto;
+}
+
+input.log_comment::placeholder { 
+	color: #40514e2c;
+}
+
+input.log_comment::-webkit-input-placeholder, 
+input.log_comment::-moz-placeholder, 
+input.log_comment:-moz-placeholder ,
+input.log_comment:-ms-input-placeholder {
+	color: #40514e2c;
+}
+
+/* Filter and submit button */
+
+form div .bottom_form{
+	display: flex;	
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	margin: 0;
 }
 
 form button {
 	color: #40514e;
 	background: white;
 	transition: all 0.3s ease;
+	/* padding: 0.5rem; */
 }
 
 form button:hover {
 	background: #59c0c2;
 	color: white;
 	cursor: pointer;
+}
+
+.filter {
+	position: relative;
+	overflow: hidden;
+}
+
+.filter select {
+	color: #40514e;
+	/* width: 100%; */
+	/* padding: 1rem; */
+}
+
+.filter::after {
+	content: "\25BC";
+	position: absolute;
+	top: 0;
+	right: 0;
+	/* padding: 1rem; */
+	pointer-events: none;
+	color: white;
+	background: #59c0c2;
+	transition: all 0.3s ease;
+}
+
+.filter:hover::after {
+	background: white;
+	color: #59c0c2;
 }
 
 /* Dog Log List Styling */
@@ -143,43 +213,6 @@ form button:hover {
 	opacity: 0;
 }
 
-/* Select Tag */
-select {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	outline: none;
-	border: none;
-	cursor: pointer;
-	background: white;
-}
 
-.filter {
-	margin: 1rem auto;
-	position: relative;
-	overflow: hidden;
-	width: 10rem;
-}
 
-.filter select {
-	color: #40514e;
-	width: 100%;
-	padding: 1rem;
-}
 
-.filter::after {
-	content: "\25BC";
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 1rem;
-	pointer-events: none;
-	color: white;
-	background: #59c0c2;
-	transition: all 0.3s ease;
-}
-
-.filter:hover::after {
-	background: white;
-	color: #59c0c2;
-}

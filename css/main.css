@@ -222,7 +222,7 @@ nav div {
 		flex-flow: row;
 		justify-content: space-evenly;
 		height: 7.5rem;
-		width: 0;
+		visibility: visible;
 	}
 
 	.nav_trans {
@@ -245,7 +245,7 @@ nav div {
 	}
 
 	.nav_button {
-		align-self: flex-start;
+		display: none;
 	}
 }
 /* --- Skills Section --- */
