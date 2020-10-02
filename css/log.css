@@ -194,14 +194,18 @@ select {
 	color: #40514e;
 	width: 100%;
 	padding: 1rem;
+	font-size: 1rem;
 }
 
 .filter::after {
+	display: flex;
+	align-self: stretch;
 	content: "\25BC";
 	position: absolute;
 	top: 0;
 	right: 0;
-	padding: 0.75rem;
+	margin: 0.5rem auto;
+	padding: 0.83rem;
 	pointer-events: none;
 	color: white;
 	background: #59c0c2;
