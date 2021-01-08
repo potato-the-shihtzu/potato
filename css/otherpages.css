@@ -1,0 +1,46 @@
+/* Header/Nav */
+
+header {
+	padding: 0 0 0 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+h1 {
+	font-size: 5rem;
+}
+
+nav {
+	padding: 0;
+}
+
+nav ul {
+	background: #ffe5d9;
+}
+
+.nav_button svg {
+	position: absolute;
+	right: 0;
+	top: 2%;
+	transform: translate(0, -2%);
+	width: 6rem;
+	height: 6rem;
+}
+
+@media screen and (min-width: 768px) {
+	div.header {
+		display: flex;
+		justify-content: space-between;
+		background: #ffe5d9;
+	}
+
+	nav {
+		width: 70%;
+	}
+
+	header {
+		width: 30%;
+		justify-content: center;
+	}
+}
