@@ -1,5 +1,7 @@
 img {
 	width: 80vw;
+	/* border-radius: 10px; */
+	border-radius: 20px;
 }
 
 .bio ul {
@@ -39,5 +41,6 @@ h3 {
 		top: 20px;
 		width: 40vw;
 		margin: 20px 10px;
+		border-radius: 0;
 	}
 }
