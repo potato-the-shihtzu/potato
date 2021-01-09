@@ -28,6 +28,11 @@ nav ul {
 	height: 6rem;
 }
 
+.nav_button svg:hover .bg_circle {
+	fill: none;
+	display: none;
+}
+
 @media screen and (min-width: 768px) {
 	div.header {
 		display: flex;
