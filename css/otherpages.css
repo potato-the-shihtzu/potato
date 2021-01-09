@@ -1,14 +1,14 @@
 /* Header/Nav */
 
 header {
-	padding: 0 0 0 1rem;
+	padding: 0 0 0 0.5rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 h1 {
-	font-size: 5rem;
+	font-size: 4.5rem;
 }
 
 nav {
@@ -33,6 +33,10 @@ nav ul {
 		display: flex;
 		justify-content: space-between;
 		background: #ffe5d9;
+	}
+
+	h1 {
+		font-size: 5rem;
 	}
 
 	nav {
