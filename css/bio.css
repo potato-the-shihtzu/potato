@@ -1,5 +1,4 @@
-img {
-	width: 80vw;
+#bio img {
 	border-radius: 20px;
 }
 
@@ -45,8 +44,8 @@ h3 {
 		align-self: flex-start;
 		width: 50vw;
 		position: sticky;
-		top: 15px;
-		margin: 20px 5vw 2vw;
+		top: 8px;
+		margin: 10px 5vw 10px 2vw;
 	}
 
 	h2 {
