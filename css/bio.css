@@ -1,6 +1,5 @@
 img {
 	width: 80vw;
-	/* border-radius: 10px; */
 	border-radius: 20px;
 }
 
@@ -21,6 +20,7 @@ img {
 
 .bio ul li {
 	font-size: 1.8rem;
+	line-height: 1.25;
 }
 
 h3 {
@@ -33,14 +33,27 @@ h3 {
 @media screen and (min-width: 768px) {
 	#bio {
 		display: flex;
+		margin: 0 3vw;
 	}
 
 	img {
+		display: inline-block;
+		width: 34vw;
+	}
+
+	.bio_pic {
 		align-self: flex-start;
+		width: 50vw;
 		position: sticky;
-		top: 20px;
-		width: 40vw;
-		margin: 20px 10px;
-		border-radius: 0;
+		top: 15px;
+		margin: 20px 5vw 2vw;
+	}
+
+	h2 {
+		margin-right: 3vw;
+	}
+
+	h3 {
+		text-align: left;
 	}
 }
