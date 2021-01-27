@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Log</title>
+		<title>Potato - Log</title>
 		<!-- <meta name="description" content="Max's personal website. It's a work in progress.">
         <meta property="og:image" content="img/max_at_engineering.jpg">
         <meta property="og:description" content="Max's personal website. It's a work in progress.">
@@ -50,16 +50,6 @@
 			rel="stylesheet"
 			href="https://www.fontspace.com/plavea-font-f48588"
 		/>
-		<script
-			src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"
-			defer
-		></script>
-		<script
-			src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"
-			defer
-		></script>
-		<script src="./js/main.js" defer></script>
-		<script src="./js/firebase.js" defer></script>
 	</head>
 	<body id="log">
 		<div class="header">
@@ -195,5 +185,13 @@
 				</p>
 			</div>
 		</footer>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-analytics.js"></script>
+		<script src="./js/main.js"></script>
 	</body>
 </html>
