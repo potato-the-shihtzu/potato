@@ -120,8 +120,8 @@ function loadLogEntries(doc) {
 
 	// activity
 
-	if (doc.data().emoji !== "" && doc.data().activity !== "") {
-		activity.textContent = `${doc.data().emoji} ${doc.data().activity}`;
+	if (doc.data().activity !== "") {
+		activity.textContent = doc.data().activity;
 		activity.className = "log_activity";
 	}
 
@@ -136,13 +136,15 @@ function loadLogEntries(doc) {
 	trashButton.classList.add("trash_btn");
 
 	// append items
-	let logElements = [date, time, activity, comment, trashButton];
+	let logElements = [date, time, activity, comment];
 
 	logElements.forEach((element) => {
 		if (element.textContent !== "") {
 			logDiv.appendChild(element);
 		}
 	});
+
+	logDiv.appendChild(trashButton);
 
 	logList.insertBefore(logDiv, logList.firstChild);
 
