@@ -28,7 +28,9 @@ firebase.analytics();
 // Initialize Cloud Firestore
 var db = firebase.firestore();
 
-// Selectors
+// Selectors\
+
+const logForm = document.querySelector(".log_form");
 
 const logDate = document.querySelector("form .log_date");
 const logTime = document.querySelector("form .log_time");
@@ -115,7 +117,11 @@ function loadLogEntries(doc) {
 	// converting time
 
 	let rawTime = doc.data().datetime.toDate().toLocaleTimeString();
-	time.textContent = `${rawTime.slice(0, 5)} ${rawTime.slice(9, 11)}`;
+	if (rawTime.slice(1, 2) === ":") {
+		time.textContent = `${rawTime.slice(0, 4)} ${rawTime.slice(8, 10)}`;
+	} else {
+		time.textContent = `${rawTime.slice(0, 5)} ${rawTime.slice(9, 11)}`;
+	}
 	time.className = "log_time";
 
 	// activity
@@ -126,9 +132,10 @@ function loadLogEntries(doc) {
 	}
 
 	// optional comment
-
-	comment.textContent = doc.data().optional_comment;
-	comment.className = "log_comment";
+	if (doc.data().comment !== "") {
+		comment.textContent = doc.data().comment;
+		comment.className = "log_comment";
+	}
 
 	// Create Trash Button
 	const trashButton = document.createElement("button");
@@ -204,11 +211,23 @@ db.collection("log")
 	.then((snapshot) => {
 		snapshot.docs.forEach((doc) => {
 			loadLogEntries(doc);
-			console.log(doc.data().datetime.toDate().toDateString());
-			console.log(doc.data().datetime.toDate().toLocaleTimeString());
 		});
 	});
 // SAVING DATA
+
+logForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	let date = new Date(`${logDate.value}T${logTime.value}:00`);
+	let timestamp = firebase.firestore.Timestamp.fromDate(date);
+	console.log(timestamp);
+	db.collection("log").add({
+		datetime: timestamp,
+		activity: logForm.activity.value,
+		comment: logForm.comment.value,
+	});
+	logForm.comment.value = "";
+	alert("Entry Submitted");
+});
 
 // setting Default Time and Date
 let currentTimeDate = new Date();

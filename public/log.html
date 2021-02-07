@@ -115,11 +115,24 @@
 			</nav>
 		</div>
 		<main>
-			<form>
-				<input type="date" min="2015-01-01" class="log_date" required />
-				<input type="time" name="" id="" class="log_time" required />
+			<form class="log_form">
+				<input
+					type="date"
+					min="2000-01-01"
+					class="log_date"
+					name="date"
+					required
+				/>
+				<input
+					type="time"
+					name=""
+					id=""
+					class="log_time"
+					name="time"
+					required
+				/>
 				<select
-					name="dog_activity"
+					name="activity"
 					id="dog_activity"
 					class="log_activity"
 					required
@@ -137,6 +150,7 @@
 					type="text"
 					class="log_comment"
 					placeholder="Optional Comment"
+					name="comment"
 				/>
 				<div class="bottom_form">
 					<button class="log_button" type="submit">&#43;</button>
