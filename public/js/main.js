@@ -127,7 +127,16 @@ function loadLogEntries(doc) {
 	// activity
 
 	if (doc.data().activity !== "") {
-		activity.textContent = doc.data().activity;
+		// removing underscores from activity text (NEED TO FIND A BETTER WAY)
+		let rawActivity = doc.data().activity.split("_");
+		if (rawActivity.length < 3) {
+			text = rawActivity[0] + " " + rawActivity[1];
+		} else {
+			text = rawActivity[0] + " " + rawActivity[1] + " " + rawActivity[2];
+		}
+
+		// adding text
+		activity.textContent = text;
 		activity.className = "log_activity";
 	}
 
@@ -153,66 +162,39 @@ function loadLogEntries(doc) {
 
 	logDiv.appendChild(trashButton);
 
-	logList.insertBefore(logDiv, logList.firstChild);
-
-	// // Create each element of logItem
-	// for (let i = 0; i < logArray.length; i++) {
-	// 	const newLogItem = document.createElement("li");
-	// 	if (logArray[i].value !== "") {
-	// 		// For date
-	// 		if (logArray[i] === logDate) {
-	// 			let valYear = logDate.value.slice(2, 4);
-	// 			let valMonth = parseInt(logDate.value.slice(5, 7)).toString();
-	// 			let valDay = parseInt(logDate.value.slice(8, 10)).toString();
-	// 			let formattedDate = valMonth + "/" + valDay + "/" + valYear;
-	// 			newLogItem.innerHTML = formattedDate;
-	// 			console.log("Current Date: " + formattedDate);
-	// 		}
-	// 		// for time
-	// 		else if (logArray[i] === logTime) {
-	// 			let ampm;
-	// 			let valHour = logTime.value.slice(0, 2);
-	// 			let valMinute = logTime.value.slice(3, 5);
-	// 			if (valHour === "00") {
-	// 				valHour = "12";
-	// 				ampm = "AM";
-	// 			} else if (valHour === "12") {
-	// 				valHour = "12";
-	// 				ampm = "PM";
-	// 			} else if (parseInt(valHour, 10) > 12) {
-	// 				valHour = (parseInt(valHour, 10) - 12).toString();
-	// 				ampm = "PM";
-	// 			} else {
-	// 				valHour = valHour.slice(1);
-	// 				ampm = "AM";
-	// 			}
-	// 			let formattedTime = valHour + ":" + valMinute + " " + ampm;
-	// 			newLogItem.innerHTML = formattedTime;
-	// 			console.log("Current Time: " + formattedTime);
-	// 		}
-	// 		// for activity
-	// 		else if (logArray[i] === logActivity) {
-	// 			newLogItem.innerHTML = logActivity.value.replace(/_/g, " ");
-	// 		}
-	// 		// for optional comment
-	// 		else if (logArray[i] === logComment) {
-	// 			newLogItem.innerHTML = logComment.value;
-	// 		}
-	// 		newLogItem.classList.add(logArray[i].className);
-	// 		logDiv.appendChild(newLogItem);
-	// 	}
-	// }
-
 	// Append to List
 	logList.insertBefore(logDiv, logList.firstChild);
+
+	// DELETING DATA
+	trashButton.addEventListener("click", (e) => {
+		e.stopPropagation();
+		let id = e.target.parentElement.getAttribute("data-id");
+		let confirmation = confirm("Delete?");
+		if (confirmation) {
+			db.collection("log").doc(id).delete();
+		}
+	});
 }
+
+// REAL TIME LISTENER
 db.collection("log")
-	.get()
-	.then((snapshot) => {
-		snapshot.docs.forEach((doc) => {
-			loadLogEntries(doc);
+	.orderBy("datetime")
+	.onSnapshot((snapshot) => {
+		let changes = snapshot.docChanges();
+		changes.forEach((change) => {
+			if (change.type == "added") {
+				loadLogEntries(change.doc);
+			} else if (change.type == "removed") {
+				let logDiv = document.querySelector(
+					"[data-id=" + change.doc.id + "]"
+				);
+				logList.removeChild(logDiv);
+			}
 		});
 	});
+
+// END of LOADING DATA
+
 // SAVING DATA
 
 logForm.addEventListener("submit", (e) => {
@@ -228,6 +210,8 @@ logForm.addEventListener("submit", (e) => {
 	logForm.comment.value = "";
 	alert("Entry Submitted");
 });
+
+// END of SAVING DATA
 
 // setting Default Time and Date
 let currentTimeDate = new Date();
@@ -271,27 +255,10 @@ window.addEventListener("load", function defaultDateTime() {
 
 	logTime.value = defHour + ":" + defMinute;
 });
-// logButton.addEventListener("click", addLogEntry);
-logList.addEventListener("click", deleteCheck);
+
 filterOption.addEventListener("click", filterLog);
 
 // Functions
-
-function deleteCheck(event) {
-	const logItem = event.target;
-	// Delete logEntry
-	if (logItem.classList[0] === "trash_btn") {
-		var confirmation = confirm("Are you sure you want to delete?");
-		if (confirmation) {
-			const parentLogItem = logItem.parentElement;
-			// Animation
-			parentLogItem.classList.add("fall");
-			window.setTimeout(function () {
-				parentLogItem.remove();
-			}, 1000);
-		}
-	}
-}
 
 function filterLog(e) {
 	// child elements of logList
