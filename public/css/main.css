@@ -248,6 +248,51 @@ nav div {
 		display: none;
 	}
 }
+
+/* --- Authentication --- */
+
+.auth {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.auth li {
+	padding: 10px;
+}
+
+.auth button {
+	padding: 5px;
+	cursor: pointer;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 10%;
+	left: 10%;
+	margin: 0 auto;
+	width: 80vw;
+	height: 80vh;
+	background-color: darkgray;
+	z-index: 1;
+}
+
+.close_modal {
+	cursor: pointer;
+}
+
+.blurred {
+	-webkit-filter: blur(2px);
+	filter: blur(2px);
+}
+
+/* Default modal visibility is hidden */
+
+.visible {
+	display: block;
+}
 /* --- Skills Section --- */
 
 .skills table {

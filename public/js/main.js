@@ -6,6 +6,44 @@ hamburgerButton.addEventListener("click", function () {
 	navigation.classList.toggle("nav_trans");
 });
 
+// *** Login Modals ***
+
+const headerDiv = document.querySelector("div.header");
+const main = document.querySelector("main");
+const loginButton = document.querySelector("button.login");
+const logoutButton = document.querySelector("button.logout");
+const loginModal = document.querySelector(".login_modal");
+const loginSubmit = document.querySelector(".login_modal button");
+const loginClose = document.querySelector(".login_modal .close_modal");
+
+// Open the login modal
+
+loginButton.addEventListener("click", () => {
+	setTimeout(function () {
+		headerDiv.className += " blurred";
+		main.className += " blurred";
+		loginModal.className += " visible";
+	}, 100);
+});
+
+// Close the login modal when clicking the X button
+
+loginClose.addEventListener("click", () => {
+	loginModal.className = "login_modal modal";
+	headerDiv.className = "header";
+	main.className = "";
+});
+
+// Closes the login modal when clicking outside of the modal
+
+window.addEventListener("click", (e) => {
+	if (!e.target.closest(".login_modal")) {
+		loginModal.className = "login_modal modal";
+		headerDiv.className = "header";
+		main.className = "";
+	}
+});
+
 // *** Dog Log ***
 
 // FIREBASE CONFIG
