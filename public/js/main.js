@@ -63,8 +63,9 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-// Initialize Cloud Firestore
-var db = firebase.firestore();
+// Initialize Cloud Firestore and Authentication
+const db = firebase.firestore();
+const auth = firebase.auth();
 
 // Selectors\
 
@@ -250,6 +251,52 @@ logForm.addEventListener("submit", (e) => {
 });
 
 // END of SAVING DATA
+// END of FIRESTORE FUNCTIONS
+
+// AUTHENTICATION FUNCTIONS
+
+const loginForm = document.querySelector(".login_modal form");
+
+// Login function
+loginForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+
+	// get user info
+	const email = loginForm["login_email"].value;
+	const password = loginForm["login_password"].value;
+
+	auth.signInWithEmailAndPassword(email, password)
+		.then((cred) => {
+			console.log(cred.user);
+
+			// close login modal
+			loginModal.className = "login_modal modal";
+			headerDiv.className = "header";
+			main.className = "";
+
+			// reset login modal
+			loginForm.reset();
+		})
+		.catch((error) => {
+			let errorCode = error.code;
+			let errorMessage = error.message;
+			if (errorCode === "auth/user-not-found") {
+				alert("User Not Found.");
+			} else {
+				alert(errorMessage);
+			}
+			console.log(error);
+		});
+});
+
+// Logout function
+
+logoutButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	auth.signOut().then(() => {
+		alert("Successfully signed out");
+	});
+});
 
 // setting Default Time and Date
 let currentTimeDate = new Date();
