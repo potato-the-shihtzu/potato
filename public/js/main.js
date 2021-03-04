@@ -1,51 +1,3 @@
-// *** Navigation Menu ****
-const hamburgerButton = document.querySelector(".nav_button svg");
-const navigation = document.querySelector("nav ul");
-
-hamburgerButton.addEventListener("click", function () {
-	navigation.classList.toggle("nav_trans");
-});
-
-// *** Login Modals ***
-
-const headerDiv = document.querySelector("div.header");
-const main = document.querySelector("main");
-const loginButton = document.querySelector("button.login");
-const logoutButton = document.querySelector("button.logout");
-const loginModal = document.querySelector(".login_modal");
-const loginSubmit = document.querySelector(".login_modal button");
-const loginClose = document.querySelector(".login_modal .close_modal");
-
-// Open the login modal
-
-loginButton.addEventListener("click", () => {
-	setTimeout(function () {
-		headerDiv.className += " blurred";
-		main.className += " blurred";
-		loginModal.className += " visible";
-	}, 100);
-});
-
-// Close the login modal when clicking the X button
-
-loginClose.addEventListener("click", () => {
-	loginModal.className = "login_modal modal";
-	headerDiv.className = "header";
-	main.className = "";
-});
-
-// Closes the login modal when clicking outside of the modal
-
-window.addEventListener("click", (e) => {
-	if (!e.target.closest(".login_modal")) {
-		loginModal.className = "login_modal modal";
-		headerDiv.className = "header";
-		main.className = "";
-	}
-});
-
-// *** Dog Log ***
-
 // FIREBASE CONFIG
 
 // Your web app's Firebase configuration
@@ -67,7 +19,15 @@ firebase.analytics();
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-// Selectors\
+// *** Navigation Menu ****
+const hamburgerButton = document.querySelector(".nav_button svg");
+const navigation = document.querySelector("nav ul");
+
+hamburgerButton.addEventListener("click", function () {
+	navigation.classList.toggle("nav_trans");
+});
+
+// Selectors
 
 const logForm = document.querySelector(".log_form");
 
@@ -83,6 +43,126 @@ const logContainer = document.querySelector(".log_container");
 const logList = document.querySelector(".log_list");
 
 const filterOption = document.querySelector(".filter_log");
+
+// Login Selectors
+const headerDiv = document.querySelector("div.header");
+const main = document.querySelector("main");
+const loginModal = document.querySelector(".login_modal");
+const loginSubmit = document.querySelector(".login_modal button");
+const loginClose = document.querySelector(".login_modal .close_modal");
+const loginForm = document.querySelector(".login_modal form");
+const loginButtons = document.querySelector("ul.auth");
+let loginButton;
+let logoutButton;
+
+// AUTHENTICATION FUNCTIONS
+
+// Listen for Auth Status Changes
+
+auth.onAuthStateChanged((user) => {
+	if (user) {
+		console.log("user logged in: ", user);
+		loginStatus(true);
+	} else {
+		console.log("user logged out");
+		loginStatus(false);
+	}
+});
+
+// Login function
+loginForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+
+	// get user info
+	const email = loginForm["login_email"].value;
+	const password = loginForm["login_password"].value;
+
+	auth.signInWithEmailAndPassword(email, password)
+		.then((cred) => {
+			console.log(cred.user);
+
+			// close login modal
+			loginModal.className = "login_modal modal";
+			headerDiv.className = "header";
+			main.className = "";
+
+			// reset login modal
+			loginForm.reset();
+		})
+		.catch((error) => {
+			let errorCode = error.code;
+			let errorMessage = error.message;
+			if (errorCode === "auth/user-not-found") {
+				alert("User Not Found.");
+			} else {
+				alert(errorMessage);
+			}
+			console.log(error);
+		});
+});
+
+// END of AUTHENTICATION FUNCTIONS
+
+// *** Login Modals ***
+
+// load up login buttons
+const loginStatus = (data) => {
+	if (data === true) {
+		loginButtons.innerHTML = `
+		<li class="logged-in">
+			<button class="logout">Logout</button>
+		</li>
+		`;
+	} else {
+		loginButtons.innerHTML = `
+		<li class="logged-out">
+			<button class="login">Login</button>
+		</li>
+		`;
+	}
+	loginButton = document.querySelector("button.login");
+	logoutButton = document.querySelector("button.logout");
+
+	console.log(loginButton, logoutButton);
+
+	// Open the login modal
+
+	loginButton.addEventListener("click", () => {
+		setTimeout(function () {
+			headerDiv.className += " blurred";
+			main.className += " blurred";
+			loginModal.className += " visible";
+		}, 100);
+	});
+
+	// Logout function
+	logoutButton.addEventListener("click", (e) => {
+		e.preventDefault();
+		auth.signOut().then(() => {
+			alert("Successfully signed out");
+		});
+	});
+};
+
+// Close the login modal when clicking the X button
+
+loginClose.addEventListener("click", () => {
+	loginModal.className = "login_modal modal";
+	headerDiv.className = "header";
+	main.className = "";
+});
+
+// Closes the login modal when clicking outside of the modal
+
+window.addEventListener("click", (e) => {
+	if (!e.target.closest(".login_modal")) {
+		loginModal.className = "login_modal modal";
+		headerDiv.className = "header";
+		main.className = "";
+	}
+});
+
+// *** END of Login Modals ***
 
 // FIRESTORE FUNCTIONS
 
@@ -191,15 +271,15 @@ function loadLogEntries(doc) {
 	trashButton.classList.add("trash_btn");
 
 	// append items
-	let logElements = [date, time, activity, comment];
+	let logElements = [date, time, activity, comment, trashButton];
 
 	logElements.forEach((element) => {
 		if (element.textContent !== "") {
 			logDiv.appendChild(element);
+		} else if (element.className === "trash_btn") {
+			logDiv.appendChild(element);
 		}
 	});
-
-	logDiv.appendChild(trashButton);
 
 	// Append to List
 	logList.insertBefore(logDiv, logList.firstChild);
@@ -252,51 +332,6 @@ logForm.addEventListener("submit", (e) => {
 
 // END of SAVING DATA
 // END of FIRESTORE FUNCTIONS
-
-// AUTHENTICATION FUNCTIONS
-
-const loginForm = document.querySelector(".login_modal form");
-
-// Login function
-loginForm.addEventListener("submit", (e) => {
-	e.preventDefault();
-
-	// get user info
-	const email = loginForm["login_email"].value;
-	const password = loginForm["login_password"].value;
-
-	auth.signInWithEmailAndPassword(email, password)
-		.then((cred) => {
-			console.log(cred.user);
-
-			// close login modal
-			loginModal.className = "login_modal modal";
-			headerDiv.className = "header";
-			main.className = "";
-
-			// reset login modal
-			loginForm.reset();
-		})
-		.catch((error) => {
-			let errorCode = error.code;
-			let errorMessage = error.message;
-			if (errorCode === "auth/user-not-found") {
-				alert("User Not Found.");
-			} else {
-				alert(errorMessage);
-			}
-			console.log(error);
-		});
-});
-
-// Logout function
-
-logoutButton.addEventListener("click", (e) => {
-	e.preventDefault();
-	auth.signOut().then(() => {
-		alert("Successfully signed out");
-	});
-});
 
 // setting Default Time and Date
 let currentTimeDate = new Date();

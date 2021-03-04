@@ -152,6 +152,10 @@ footer div p {
 	margin-bottom: 6px;
 }
 
+.display_none {
+	display: none;
+}
+
 /* --- Navigation --- */
 
 nav {
@@ -258,10 +262,6 @@ nav div {
 	align-items: center;
 }
 
-.auth li {
-	padding: 10px;
-}
-
 .auth button {
 	padding: 5px;
 	cursor: pointer;
@@ -319,6 +319,7 @@ nav div {
 .visible {
 	display: block;
 }
+
 /* --- Skills Section --- */
 
 .skills table {
