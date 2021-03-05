@@ -82,9 +82,9 @@ form * {
 	color: #40514e;
 }
 
-form input,
-form select,
-form button {
+.log_form input,
+.log_form select,
+.log_form button {
 	font-size: 1.5rem;
 	border: none;
 	border-radius: 5px;
@@ -92,16 +92,15 @@ form button {
 	padding: 5px;
 	background: white;
 	width: 90%;
-	min-width: 90%;
 }
 
-form button {
+.log_form button {
 	color: #40514e;
 	background: white;
 	transition: all 0.3s ease;
 }
 
-form button:hover {
+.log_form button:hover {
 	background: #59c0c2;
 	color: white;
 	cursor: pointer;

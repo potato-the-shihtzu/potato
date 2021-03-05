@@ -52,8 +52,7 @@ const loginSubmit = document.querySelector(".login_modal button");
 const loginClose = document.querySelector(".login_modal .close_modal");
 const loginForm = document.querySelector(".login_modal form");
 const loginButtons = document.querySelector("ul.auth");
-let loginButton;
-let logoutButton;
+const authButton = document.querySelector("ul.auth li");
 
 // AUTHENTICATION FUNCTIONS
 
@@ -108,41 +107,30 @@ loginForm.addEventListener("submit", (e) => {
 // load up login buttons
 const loginStatus = (data) => {
 	if (data === true) {
-		loginButtons.innerHTML = `
-		<li class="logged-in">
-			<button class="logout">Logout</button>
-		</li>
-		`;
+		authButton.className = "logged_in";
+		authButton.innerHTML = `<button class="logout">Logout</button>`;
 	} else {
-		loginButtons.innerHTML = `
-		<li class="logged-out">
-			<button class="login">Login</button>
-		</li>
-		`;
+		authButton.className = "logged_out";
+		authButton.innerHTML = `<button class="login">Login</button>`;
 	}
-	loginButton = document.querySelector("button.login");
-	logoutButton = document.querySelector("button.logout");
+};
 
-	console.log(loginButton, logoutButton);
+// login and logout button functionality
 
-	// Open the login modal
-
-	loginButton.addEventListener("click", () => {
+authButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	if (loginButtons.firstElementChild.className === "logged_out") {
 		setTimeout(function () {
 			headerDiv.className += " blurred";
 			main.className += " blurred";
 			loginModal.className += " visible";
 		}, 100);
-	});
-
-	// Logout function
-	logoutButton.addEventListener("click", (e) => {
-		e.preventDefault();
+	} else if (loginButtons.firstElementChild.className === "logged_in") {
 		auth.signOut().then(() => {
 			alert("Successfully signed out");
 		});
-	});
-};
+	}
+});
 
 // Close the login modal when clicking the X button
 
@@ -160,6 +148,7 @@ window.addEventListener("click", (e) => {
 		headerDiv.className = "header";
 		main.className = "";
 	}
+	console.log(e.target);
 });
 
 // *** END of Login Modals ***
