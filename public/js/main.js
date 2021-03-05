@@ -146,7 +146,6 @@ window.addEventListener("click", (e) => {
 		headerDiv.className = "header";
 		main.className = "";
 	}
-	console.log(e.target);
 });
 
 // *** END of Login Modals ***
@@ -275,9 +274,9 @@ function loadLogEntries(doc) {
 	trashButton.addEventListener("click", (e) => {
 		e.stopPropagation();
 		let id = e.target.parentElement.getAttribute("data-id");
-		let confirmation = confirm("Delete?");
-		if (confirmation) {
-			db.collection("log").doc(id).delete();
+		db.collection("log").doc(id).delete();
+		if (authButton.className === "logged_out") {
+			alert("Must be logged in to delete entry!");
 		}
 	});
 }
@@ -307,14 +306,17 @@ logForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	let date = new Date(`${logDate.value}T${logTime.value}:00`);
 	let timestamp = firebase.firestore.Timestamp.fromDate(date);
-	console.log(timestamp);
 	db.collection("log").add({
 		datetime: timestamp,
 		activity: logForm.activity.value,
 		comment: logForm.comment.value,
 	});
 	logForm.comment.value = "";
-	alert("Entry Submitted");
+	if (authButton.className === "logged_out") {
+		alert("Must be logged in to add entry!");
+	} else if (authButton.className === "logged_in") {
+		alert("Entry Submitted.");
+	}
 });
 
 // END of SAVING DATA
