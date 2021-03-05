@@ -42,8 +42,6 @@ const logButton = document.querySelector(".log_button");
 const logContainer = document.querySelector(".log_container");
 const logList = document.querySelector(".log_list");
 
-const filterOption = document.querySelector(".filter_log");
-
 // Login Selectors
 const headerDiv = document.querySelector("div.header");
 const main = document.querySelector("main");
@@ -364,33 +362,3 @@ window.addEventListener("load", function defaultDateTime() {
 
 	logTime.value = defHour + ":" + defMinute;
 });
-
-filterOption.addEventListener("click", filterLog);
-
-// Functions
-
-function filterLog(e) {
-	// child elements of logList
-	const logEntries = logList.childNodes;
-	// for all children of logList
-	logEntries.forEach(function (logEntry) {
-		// child elements of individual logEntry
-		const logListItems = logEntry.childNodes;
-		// show list items based on filter option
-		switch (e.target.value) {
-			case "all":
-				logEntry.style.display = "flex";
-				break;
-			case "with_comment":
-				for (const logLi of logListItems) {
-					if (logLi.classList.contains("log_comment")) {
-						logEntry.style.display = "flex";
-						break;
-					} else if (logLi.classList.contains("trash_btn")) {
-						logEntry.style.display = "none";
-					}
-				}
-				break;
-		}
-	});
-}
