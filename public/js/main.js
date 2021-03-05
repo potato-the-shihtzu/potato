@@ -51,6 +51,7 @@ const loginClose = document.querySelector(".login_modal .close_modal");
 const loginForm = document.querySelector(".login_modal form");
 const loginButtons = document.querySelector("ul.auth");
 const authButton = document.querySelector("ul.auth li");
+let loginStatus;
 
 // AUTHENTICATION FUNCTIONS
 
@@ -59,10 +60,12 @@ const authButton = document.querySelector("ul.auth li");
 auth.onAuthStateChanged((user) => {
 	if (user) {
 		console.log("user logged in: ", user);
-		loginStatus(true);
+		createAuthButtons(true);
+		loginStatus = true;
 	} else {
+		createAuthButtons(false);
+		loginStatus = false;
 		console.log("user logged out");
-		loginStatus(false);
 	}
 });
 
@@ -103,7 +106,7 @@ loginForm.addEventListener("submit", (e) => {
 // *** Login Modals ***
 
 // load up login buttons
-const loginStatus = (data) => {
+const createAuthButtons = (data) => {
 	if (data === true) {
 		authButton.className = "logged_in";
 		authButton.innerHTML = `<button class="logout">Logout</button>`;
@@ -274,8 +277,9 @@ function loadLogEntries(doc) {
 	trashButton.addEventListener("click", (e) => {
 		e.stopPropagation();
 		let id = e.target.parentElement.getAttribute("data-id");
-		db.collection("log").doc(id).delete();
-		if (authButton.className === "logged_out") {
+		if (loginStatus === true) {
+			db.collection("log").doc(id).delete();
+		} else {
 			alert("Must be logged in to delete entry!");
 		}
 	});
@@ -290,9 +294,11 @@ db.collection("log")
 			if (change.type == "added") {
 				loadLogEntries(change.doc);
 			} else if (change.type == "removed") {
+				console.log(change.doc.id);
 				let logDiv = document.querySelector(
 					"[data-id=" + change.doc.id + "]"
 				);
+
 				logList.removeChild(logDiv);
 			}
 		});
@@ -306,16 +312,16 @@ logForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	let date = new Date(`${logDate.value}T${logTime.value}:00`);
 	let timestamp = firebase.firestore.Timestamp.fromDate(date);
-	db.collection("log").add({
-		datetime: timestamp,
-		activity: logForm.activity.value,
-		comment: logForm.comment.value,
-	});
-	logForm.comment.value = "";
-	if (authButton.className === "logged_out") {
+
+	if (loginStatus === true) {
+		db.collection("log").add({
+			datetime: timestamp,
+			activity: logForm.activity.value,
+			comment: logForm.comment.value,
+		});
+		logForm.comment.value = "";
+	} else {
 		alert("Must be logged in to add entry!");
-	} else if (authButton.className === "logged_in") {
-		alert("Entry Submitted.");
 	}
 });
 
